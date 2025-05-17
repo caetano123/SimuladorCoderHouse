@@ -1,20 +1,103 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Simulador de Ahorro Mensual</h1>
-    <p>
-        Este simulador permite calcular cuánto dinero ahorrarás en un período determinado, 
-        en función del monto que elijas guardar cada mes. 
-        Interactúa con el usuario mediante prompts, confirmaciones y alertas,
-        y utiliza la consola para mostrar los resultados detallados.
-    </p>
-    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mi App de Finanzas</title>
 
-    <script src="./js/script.js"></script>
+  <!-- Estilos -->
+  <link rel="stylesheet" href="css/styles.css">
+  
+  <!-- Chart.js para los gráficos -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+  <!-- 🌟 Header principal -->
+  <header>
+    <nav>
+      <ul class="menuNav">
+        <li><a href="#dashboard">Inicio</a></li>
+        <li><a href="#metas">Metas de Ahorro</a></li>
+        <li><a href="#inversiones">Inversiones</a></li>
+        <li><a href="#jubilacion">Plan de Jubilación</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <h1 id="Titulo">Mi App de Finanzas Personales</h1>
+
+  <!-- 🌟 Sección Dashboard -->
+  <section id="dashboard">
+    <h2>Bienvenido</h2>
+    <div id="resumen">
+      <!-- Aquí el JS insertará el resumen de finanzas -->
+    </div>
+    <div class="grafico">
+      <canvas id="graficoFinanzas"></canvas>
+    </div>
+    <hr>
+  </section>
+
+  <!-- 🌟 Sección Metas de Ahorro -->
+  <section id="metas">
+    <h2>Metas de Ahorro</h2>
+    <form id="formMetas">
+      <input type="text" id="nombreMeta" placeholder="Nombre de la meta" required>
+      <input type="number" id="montoMeta" placeholder="Monto objetivo ($)" required>
+      <input type="number" id="ahorroMensual" placeholder="Ahorro mensual ($)" required>
+      <input type="date" id="fechaLimite" required>
+      <button type="submit">Agregar Meta</button>
+    </form>
+    <div id="listaMetas">
+      <!-- JS pondrá aquí las metas guardadas -->
+    </div>
+  </section>
+
+  <!-- 🌟 Sección Inversiones -->
+  <section id="inversiones">
+    <h2>Calculadora de Inversiones</h2>
+    <form id="formInversiones">
+      <input type="number" id="montoInicial" placeholder="Monto inicial ($)" required>
+      <input type="number" id="rendimientoEsperado" placeholder="Rendimiento promedio (%)" required>
+      <input type="number" id="tiempoInversion" placeholder="Tiempo (meses)" required>
+      <button type="submit">Simular Inversión</button>
+    </form>
+    <div class="grafico">
+      <canvas id="graficoInversiones"></canvas>
+    </div>
+    <div id="listaInversiones">
+      <!-- JS pondrá aquí las metas guardadas -->
+    </div>
+  </section>
+
+  <!-- 🌟 Sección Planificador de Jubilación -->
+  <section id="jubilacion">
+    <h2>Planificador de Jubilación</h2>
+    <form id="formJubilacion">
+      <input type="number" id="edadActual" placeholder="Edad actual" required>
+      <input type="number" id="edadJubilacion" placeholder="Edad objetivo" required>
+      <input type="number" id="ahorroActual" placeholder="Ahorro actual ($)" required>
+      <input type="number" id="aporteMensual" placeholder="Aporte mensual ($)" required>
+      <input type="number" id="rendimientoAnual" placeholder="Rendimiento anual (%)" required>
+      <button type="submit">Planificar</button>
+    </form>
+    <div id="resultadoJubilacion">
+      <!-- Aquí JS mostrará el cálculo final de jubilación -->
+    </div>
+  </section>
+
+  <!-- 🌟 Footer -->
+  <footer>
+    <p>© 2025 Mi App de Finanzas. Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- 🌟 Scripts (cargar en orden) -->
+  <script src="js/storage.js"></script>
+  <script src="js/graficos.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/metasAhorro.js"></script>
+  <script src="js/inversiones.js"></script>
+  <script src="js/jubilacion.js"></script>
 </body>
 </html>
