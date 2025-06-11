@@ -8,7 +8,7 @@ function guardarDatos(key, datos) {
   // Función para leer datos de localStorage
   function leerDatos() {
     const metas = JSON.parse(localStorage.getItem("metas")) || [];
-    const inversiones = JSON.parse(localStorage.getItem("inversiones")) || { total: 0 };
+    const inversiones = JSON.parse(localStorage.getItem("inversiones")) || [];
     const jubilacion = JSON.parse(localStorage.getItem("jubilacion")) || {};
   
     return { metas, inversiones, jubilacion };

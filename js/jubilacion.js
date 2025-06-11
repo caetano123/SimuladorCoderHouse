@@ -59,13 +59,18 @@ document.addEventListener("DOMContentLoaded", () => {
   
   // Calcular el ahorro final
   function calcularAhorroFinal(ahorroActual, aporteMensual, rendimientoAnual, añosHastaJubilacion) {
-    // Fórmula de cálculo de interés compuesto
-    const aporteTotal = aporteMensual * 12 * añosHastaJubilacion;
-    const rendimientoAcumulado = Math.pow(1 + rendimientoAnual, añosHastaJubilacion);
-    const ahorroFinal = (ahorroActual + aporteTotal) * rendimientoAcumulado;
-  
-    return ahorroFinal;
+  if (rendimientoAnual === 0) {
+    return ahorroActual + aporteMensual * 12 * añosHastaJubilacion;
   }
+  const r = rendimientoAnual;
+  const n = añosHastaJubilacion;
+
+  const ahorroFinal =
+    ahorroActual * Math.pow(1 + r, n) +
+    aporteMensual * 12 * ((Math.pow(1 + r, n) - 1) / r) * (1 + r);
+
+  return ahorroFinal;
+}
   
   // Cargar datos de jubilación previos desde localStorage
   function cargarDatosPrevios() {
@@ -76,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("edadJubilacion").value = jubilacionData.edadJubilacion || "";
       document.getElementById("ahorroActual").value = jubilacionData.ahorroActual || "";
       document.getElementById("aporteMensual").value = jubilacionData.aporteMensual || "";
-      document.getElementById("rendimientoAnual").value = jubilacionData.rendimientoAnual || "";
+      document.getElementById("rendimientoAnual").value = jubilacionData.rendimientoAnual ? (jubilacionData.rendimientoAnual * 100) : "";
   
       // Mostrar el resultado previamente guardado
       document.getElementById("resultadoJubilacion").innerHTML = `
