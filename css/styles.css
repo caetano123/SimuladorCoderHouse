@@ -51,6 +51,48 @@ a {
   color: inherit;
 }
 
+#authSection {
+  max-width: 400px;
+  margin: 100px auto 40px auto;
+  padding: 2rem;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+#authSection h2, #authSection h3 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+#authSection form {
+  margin-bottom: 2rem;
+}
+
+#authSection input,
+#authSection button {
+  width: 100%;
+}
+
+#logoutBtn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: crimson;
+  color: white;
+  padding: 10px 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+#logoutBtn:hover {
+  background-color: darkred;
+}
+
 .menuNav {
   position: fixed;
   top: 0;

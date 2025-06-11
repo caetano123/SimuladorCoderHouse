@@ -3,6 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Gestiona tus finanzas personales, metas de ahorro, inversiones y plan de jubilación con nuestra app.">
+  <meta property="og:title" content="Mi App de Finanzas">
+  <meta property="og:description" content="App para organizar tu dinero, metas, inversiones y jubilación.">
+  <meta property="og:type" content="website">
+  
   <title>Mi App de Finanzas</title>
 
   <!-- Estilos -->
@@ -13,6 +18,7 @@
 </head>
 
 <body>
+  
   <!-- 🌟 Header principal -->
   <header>
     <nav>
@@ -21,11 +27,34 @@
         <li><a href="#metas">Metas de Ahorro</a></li>
         <li><a href="#inversiones">Inversiones</a></li>
         <li><a href="#jubilacion">Plan de Jubilación</a></li>
+        <li><button id="logoutBtn" style="display:none;">Cerrar sesión</button></li>
       </ul>
     </nav>
   </header>
 
   <h1 id="Titulo">Mi App de Finanzas Personales</h1>
+
+  <!-- 🌟 Sección de Autenticación -->
+<section id="authSection">
+  <h2>Iniciar sesión o registrarse</h2>
+
+  <form id="registerForm">
+    <h3>Registro</h3>
+    <input type="text" id="regNombre" placeholder="Nombre" required>
+    <input type="email" id="regEmail" placeholder="Email" required>
+    <input type="password" id="regPassword" placeholder="Contraseña" required>
+    <button type="submit">Registrarse</button>
+  </form>
+
+  <form id="loginForm">
+    <h3>Iniciar sesión</h3>
+    <input type="email" id="loginEmail" placeholder="Email" required>
+    <input type="password" id="loginPassword" placeholder="Contraseña" required>
+    <button type="submit">Iniciar sesión</button>
+  </form>
+</section>
+
+<div id="mainApp" style="display:none;">
 
   <!-- 🌟 Sección Dashboard -->
   <section id="dashboard">
@@ -92,7 +121,10 @@
     <p>© 2025 Mi App de Finanzas. Todos los derechos reservados.</p>
   </footer>
 
+  </div>
+
   <!-- 🌟 Scripts (cargar en orden) -->
+  <script src="js/auth.js"></script>
   <script src="js/storage.js"></script>
   <script src="js/graficos.js"></script>
   <script src="js/dashboard.js"></script>

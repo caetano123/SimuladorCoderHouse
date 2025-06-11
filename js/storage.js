@@ -45,8 +45,3 @@ function guardarDatos(key, datos) {
 
     actualizarGraficoGeneral();
 }
-
-// Función para guardar los datos en localStorage
-function guardarDatos(key, datos) {
-    localStorage.setItem(key, JSON.stringify(datos));
-}
