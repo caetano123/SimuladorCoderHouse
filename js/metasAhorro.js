@@ -1,75 +1,80 @@
-// metasAhorro.js
-
 document.addEventListener("DOMContentLoaded", () => {
+  // Cargar metas desde JSON si no hay metas en localStorage
+  if (!localStorage.getItem("metas")) {
+    fetch("../metas.json")
+      .then(response => {
+        if (!response.ok) throw new Error("No se pudo cargar metas.json");
+        return response.json();
+      })
+      .then(data => {
+        guardarDatos("metas", data);
+        mostrarMetas();
+      })
+      .catch(error => {
+        console.error("Error cargando metas:", error);
+        // Mostrar mensaje o manejar error
+      });
+  } else {
+    mostrarMetas();
+  }
+
   const form = document.getElementById("formMetas");
 
-  // ✅ Verificamos que el formulario exista
   if (form) {
     form.addEventListener("submit", (e) => {
-      e.preventDefault(); // Prevenir que recargue la página
+      e.preventDefault();
 
-      // Capturamos los datos del formulario
       const nombreInput = document.getElementById("nombreMeta");
       const montoInput = document.getElementById("montoMeta");
       const ahorroInput = document.getElementById("ahorroMensual");
       const fechaInput = document.getElementById("fechaLimite");
 
-      // ✅ Verificamos existencia de los inputs antes de acceder a sus valores
       if (!nombreInput || !montoInput || !ahorroInput || !fechaInput) {
-        alert("Hay un error con el formulario. Verifica que los campos existan.");
+        alert("Error en el formulario.");
         return;
       }
 
-      const nombre = nombreInput.value;
+      const nombre = nombreInput.value.trim();
       const monto = parseFloat(montoInput.value);
       const ahorroMensual = parseFloat(ahorroInput.value);
       const fechaLimite = fechaInput.value;
 
-      if (!nombre || !monto || !ahorroMensual || !fechaLimite) {
-        alert("Por favor, completa todos los campos.");
+      if (!nombre || isNaN(monto) || isNaN(ahorroMensual) || !fechaLimite) {
+        alert("Por favor completa todos los campos correctamente.");
         return;
       }
 
-      // Creamos el objeto meta
       const nuevaMeta = {
-        id: Date.now(), // ID único basado en el tiempo
+        id: Date.now(),
         nombre,
         monto,
         ahorroMensual,
         fechaLimite,
-        ahorrado: 0 // Arranca en 0
+        ahorrado: 0
       };
 
-      // Traemos las metas existentes
-      const datosActuales = leerDatos();
-      const metasActualizadas = [...datosActuales.metas, nuevaMeta];
-
-      // Guardamos las nuevas metas
+      const datos = leerDatos();
+      const metasActualizadas = [...datos.metas, nuevaMeta];
       guardarDatos("metas", metasActualizadas);
 
-      // Limpia el formulario
       form.reset();
 
-      // Refrescamos la lista de metas
       mostrarMetas();
-      actualizarGraficoGeneral?.(); // ✅ Si la función existe, la ejecuta
-    });
 
-    // Cargar metas cuando arranca la página
-    mostrarMetas();
+      if (typeof actualizarGraficoGeneral === "function") {
+        actualizarGraficoGeneral();
+      }
+    });
   }
 });
 
-// Mostrar la lista de metas en pantalla
 function mostrarMetas() {
   const lista = document.getElementById("listaMetas");
-
-  // ✅ Verificamos si el contenedor existe
   if (!lista) return;
 
   const datos = leerDatos();
 
-  if (datos.metas.length === 0) {
+  if (!datos.metas || datos.metas.length === 0) {
     lista.innerHTML = "<p>No tienes metas guardadas.</p>";
     return;
   }

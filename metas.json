@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "nombre": "Viaje a Europa",
+    "monto": 3000,
+    "ahorroMensual": 250,
+    "fechaLimite": "2025-12-31",
+    "ahorrado": 500
+  },
+  {
+    "id": 2,
+    "nombre": "Compra de Laptop",
+    "monto": 1200,
+    "ahorroMensual": 150,
+    "fechaLimite": "2024-09-30",
+    "ahorrado": 200
+  }
+]
